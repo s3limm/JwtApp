@@ -1,14 +1,12 @@
-﻿using JwtApp.Api.Core.Domain;
+﻿using MediatR;
 
-namespace JwtApp.Api.Core.Application.Dto.Product
+namespace JwtApp.Api.Core.Application.Features.Commands.Product.CreateProduct
 {
-    public class ProductListDto
+    public class CreateProductCommandRequest:IRequest
     {
-        public int ID { get; set; }
         public string Name { get; set; }
         public int Stock { get; set; }
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
-
     }
 }

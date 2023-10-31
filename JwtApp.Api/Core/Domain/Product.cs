@@ -10,9 +10,6 @@
 
         //Relational Properties
         public Category Category { get; set; }
-        public Product()
-        {
-            Category = new Category();
-        }
+        
     }
 }

@@ -8,10 +8,5 @@ namespace JwtApp.Api.Core.Domain
         public string? Definition { get; set; }
         public List<Product> Products{ get; set; }
 
-        public Category()
-        {
-            Products = new List<Product>();
-        }
-
     }
 }
