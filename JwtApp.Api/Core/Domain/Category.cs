@@ -6,6 +6,8 @@ namespace JwtApp.Api.Core.Domain
     {
         public int Id { get; set; }
         public string? Definition { get; set; }
+
+        //Relational Properties
         public List<Product> Products{ get; set; }
 
     }
