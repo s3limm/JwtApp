@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Create;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Delete;
+using JwtApp.Api.Core.Application.Features.Commands.Auth.Register;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Update;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAllAuth;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAuthById;
@@ -38,6 +39,14 @@ namespace JwtApp.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateAuth(CreateAuthCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Created("", request.UserName);
+        }
+
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterCommandRequest request)
         {
             await _mediator.Send(request);
             return Created("", request.UserName);
