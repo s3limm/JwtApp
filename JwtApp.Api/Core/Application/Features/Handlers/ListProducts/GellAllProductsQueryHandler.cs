@@ -22,6 +22,6 @@ namespace JwtApp.Api.Core.Application.Features.Handlers.ListProducts
         {
             var data = await _repository.GetAllAsync();
             return _mapper.Map<List<ProductListDto>>(data);
-        }
+        } 
     }
 }
