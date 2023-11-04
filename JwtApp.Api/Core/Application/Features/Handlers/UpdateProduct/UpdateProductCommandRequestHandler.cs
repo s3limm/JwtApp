@@ -22,6 +22,7 @@ namespace JwtApp.Api.Core.Application.Features.Handlers.UpdateProduct
                 product.Stock = request.Stock;
                 product.CategoryId = request.CategoryId;
             }
+            await _repository.UpdateAsync(product);
             return Unit.Value;
         }
     }

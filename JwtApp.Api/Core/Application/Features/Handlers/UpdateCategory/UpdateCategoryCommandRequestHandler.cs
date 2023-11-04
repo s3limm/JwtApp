@@ -20,8 +20,8 @@ namespace JwtApp.Api.Core.Application.Features.Handlers.UpdateCategory
             if (category != null)
             {
                 category.Definition = request.Definition;
-                category.Id = request.Id;
             }
+            await _repository.UpdateAsync(category);
             return Unit.Value;
         }
     }
