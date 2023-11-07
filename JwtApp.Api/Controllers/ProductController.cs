@@ -6,11 +6,13 @@ using JwtApp.Api.Core.Application.Features.Queries.Product;
 using JwtApp.Api.Core.Application.Features.Queries.Product.GetByIdProduct;
 using JwtApp.Api.Core.Application.Features.Queries.Product.ListProducts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JwtApp.Api.Controllers
 {
+    [Authorize(Roles ="Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase

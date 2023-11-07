@@ -5,11 +5,14 @@ using JwtApp.Api.Core.Application.Features.Handlers.CreateCategory;
 using JwtApp.Api.Core.Application.Features.Queries.Category.GetAllCategories;
 using JwtApp.Api.Core.Application.Features.Queries.Category.GetCategoryById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace JwtApp.Api.Controllers
 {
+    [Authorize(Roles ="Admin,Member")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase

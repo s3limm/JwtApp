@@ -7,6 +7,7 @@ using JwtApp.Api.Core.Application.Features.Commands.Auth.Update;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.CheckUser;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAllAuth;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAuthById;
+using JwtApp.Api.Infrastructure.Tools.JwtTokenGenerator;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -73,11 +74,11 @@ namespace JwtApp.Api.Controllers
 
         public async Task<IActionResult> Login(CheckUserQueryRequest request)
         {
-            var user = await _mediator.Send(request);
+            var dto = await _mediator.Send(request);
 
-            if (user != null)
+            if (dto != null)
             {
-                return Created("","Token oluştur.");
+                return Created("",JwtTokenGenerator.GenerateToken(dto));
             }
             else
             {
