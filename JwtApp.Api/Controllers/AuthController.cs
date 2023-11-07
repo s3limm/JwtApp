@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using JwtApp.Api.Core.Application.Dto.Auth;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Create;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Delete;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Register;
 using JwtApp.Api.Core.Application.Features.Commands.Auth.Update;
+using JwtApp.Api.Core.Application.Features.Queries.Auth.CheckUser;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAllAuth;
 using JwtApp.Api.Core.Application.Features.Queries.Auth.GetAuthById;
 using MediatR;
@@ -44,14 +46,6 @@ namespace JwtApp.Api.Controllers
             return Created("", request.UserName);
         }
 
-
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register(RegisterCommandRequest request)
-        {
-            await _mediator.Send(request);
-            return Created("", request.UserName);
-        }
-
         [HttpDelete]
         public async Task<IActionResult> DeleteAuth(DeleteAuthCommandRequest request)
         {
@@ -64,6 +58,31 @@ namespace JwtApp.Api.Controllers
         {
             var result = _mediator.Send(request);
             return Ok(result);
+        }
+
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Created("", request.UserName);
+        }
+
+
+        [HttpPost("[action]")]
+
+        public async Task<IActionResult> Login(CheckUserQueryRequest request)
+        {
+            var user = await _mediator.Send(request);
+
+            if (user != null)
+            {
+                return Created("","Token oluştur.");
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre hatalı");
+            }
         }
     }
 }
