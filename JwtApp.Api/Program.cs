@@ -26,7 +26,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApiDbContext>(opt =>
 {
-    opt.UseSqlServer("Server =.\\SQLEXPRESS; Database = JwtAppApiDB; Trusted_Connection = True; TrustServerCertificate = True; ");
+    opt.UseSqlServer("Server =.\\SQLEXPRESS; Database = JwtAppApiDB; Trusted_Connection = True; TrustServerCertificate = True;");
 });
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
